@@ -10,5 +10,5 @@ Create `.npmrc` file with the follow content
 then run
 
 ```bash
-npm install @alttiri/util-js@1.0.0
+npm install @alttiri/util-js
 ```
