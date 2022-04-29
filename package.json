@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sleep function with setImmediate",
   "main": "index.js",
   "keywords": [
