@@ -1,3 +1,3 @@
 export {
     sleep,
-} from "./src/sleep.js"
+} from "./src/sleep.js";
