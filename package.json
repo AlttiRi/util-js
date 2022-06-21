@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Sleep function with setImmediate",
   "main": "index.js",
   "keywords": [
@@ -8,7 +8,7 @@
     "setImmediate"
   ],
   "scripts": {
-    "deploy": "npm publish"
+    "publish-to-github-packages": "npm publish"
   },
   "license": "MIT",
   "type": "module",
