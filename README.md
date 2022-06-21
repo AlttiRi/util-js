@@ -18,17 +18,17 @@ Note, that GitHub Packages requires to have also `~/.npmrc` file with `//npm.pkg
 ### From GitHub:
 Install the lastest version from GitHub directly:
 ```bash
-npm install git+https://github.com/AlttiRi/util-js.git
+npm install git+https://github.com/alttiri/util-js.git
 ```
 
 To install a specific version (based on git tag):
 ```bash
-npm install git+https://github.com/AlttiRi/util-js.git#semver:1.1.0
+npm install git+https://github.com/alttiri/util-js.git#semver:1.1.0
 ```
 
 To install a specific commit version:
 ```bash
-npm install git+https://github.com/AlttiRi/util-js.git#5938ffd735966a1427feca5057a779e99c2a6cad
+npm install git+https://github.com/alttiri/util-js.git#5938ffd735966a1427feca5057a779e99c2a6cad
 ```
 
 No need extra actions.
