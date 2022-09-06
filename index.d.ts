@@ -1,3 +1,1 @@
-export {
-    sleep,
-} from "./src/sleep.js";
+export function sleep(ms?: number): Promise<undefined>;
