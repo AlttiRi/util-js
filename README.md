@@ -23,7 +23,7 @@ npm install git+https://github.com/alttiri/util-js.git
 
 To install a specific version (based on git tag):
 ```bash
-npm install git+https://github.com/alttiri/util-js.git#semver:1.1.0
+npm install git+https://github.com/alttiri/util-js.git#semver:2.0.0
 ```
 
 To install a specific commit version:
