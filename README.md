@@ -28,7 +28,7 @@ npm install git+https://github.com/alttiri/util-js.git#semver:1.2.0
 
 To install a specific commit version:
 ```bash
-npm install git+https://github.com/alttiri/util-js.git#5cb21d8c4815ab006589d3a36adedec3634ac72b
+npm install git+https://github.com/alttiri/util-js.git#80a94910c533ef1edc94b20bafab3e71c23ee66d
 ```
 
 No need extra actions.
