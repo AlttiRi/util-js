@@ -22,11 +22,11 @@ npm install git+https://github.com/alttiri/util-js.git
 
 - **Based on SemVer:**
     ```bash
-    npm install git+https://github.com/alttiri/util-js.git#semver:1.2.0
+    npm install git+https://github.com/alttiri/util-js.git#semver:1.3.0
     ```
   Or add
     ```
-    "@alttiri/util-js": "github:alttiri/util-js#semver:1.2.0"
+    "@alttiri/util-js": "github:alttiri/util-js#semver:1.3.0"
     ```
   as `dependencies` in `package.json` file.
 
