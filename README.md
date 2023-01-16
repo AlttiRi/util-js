@@ -1,5 +1,9 @@
 # util-js
 
+Some browser JS util function.
+
+Mostly it's a draft version for personal use.
+
 ## Installation
 
 ### From NPM
