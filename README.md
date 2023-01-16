@@ -34,11 +34,11 @@ npm install git+https://github.com/alttiri/util-js.git
 
 - **Based on a commit hash:**
     ```bash
-    npm install git+https://github.com/alttiri/util-js.git#80a94910c533ef1edc94b20bafab3e71c23ee66d
+    npm install git+https://github.com/alttiri/util-js.git#eea3068f8c70c6a500a44b69aeb0cb65ac8b80a6
     ```
   Or add
     ```
-    "@alttiri/util-js": "github:alttiri/util-js#80a94910c533ef1edc94b20bafab3e71c23ee66d"
+    "@alttiri/util-js": "github:alttiri/util-js#eea3068f8c70c6a500a44b69aeb0cb65ac8b80a6"
     ```
   as `dependencies` in `package.json` file.
 
