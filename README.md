@@ -1,6 +1,6 @@
 # util-js
 
-Some JS util function.
+Some JavaScript util functions.
 
 Mostly it's a draft version for personal use.
 
