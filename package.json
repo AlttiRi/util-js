@@ -1,9 +1,12 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Sleep function with setImmediate",
   "homepage": "https://github.com/AlttiRi/util-js",
-  "keywords": ["sleep", "setImmediate"],
+  "keywords": [
+    "sleep",
+    "setImmediate"
+  ],
   "license": "MIT",
   "type": "module",
   "main": "index.js",
@@ -16,10 +19,12 @@
     "url": "https://github.com/alttiri/util-js.git"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "scripts": {
-    "publish-to-github-packages": "npm publish"
+    "login-ghp": "npm login --registry=https://npm.pkg.github.com",
+    "login-npm": "npm login --registry=https://registry.npmjs.org",
+    "publish-ghp": "npm publish --registry=https://npm.pkg.github.com",
+    "publish-npm": "npm publish --registry=https://registry.npmjs.org"
   }
 }
