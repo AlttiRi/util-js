@@ -15,7 +15,7 @@ const setImmediate = __setImmediate || /*#__PURE__*/ (function() {
 /**
  * Sleeps `ms` milliseconds.
  * If param is `undefined` it sleeps until the next macro-task.
- * Note: with `0` real ms will be `4` ms.
+ * Note: With `0` real ms will be `4`+ ms.
  * @param {number?} ms
  * */
 export function sleep(ms) {
@@ -25,8 +25,4 @@ export function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-console.time("1");
-for (let i = 0; i < 1000; i++) {
-    await sleep();
-}
-console.timeEnd("1");
+
