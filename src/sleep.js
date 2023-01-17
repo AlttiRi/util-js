@@ -1,4 +1,5 @@
-const setImmediate = globalThis.setImmediate || /*#__PURE__*/ (function() {
+const __setImmediate = typeof setImmediate === "function" ? setImmediate : null;
+const setImmediate = __setImmediate || /*#__PURE__*/ (function() {
     const {port1, port2} = new MessageChannel();
     const queue = [];
     port1.onmessage = function() {
