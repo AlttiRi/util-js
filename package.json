@@ -1,11 +1,14 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Sleep function with setImmediate",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
     "sleep",
-    "setImmediate"
+    "setImmediate",
+    "format",
+    "date",
+    "size"
   ],
   "license": "MIT",
   "type": "module",
@@ -29,5 +32,8 @@
     "##": "",
     "login-npm": "npm login --registry=https://registry.npmjs.org",
     "login-ghp": "npm login --registry=https://npm.pkg.github.com"
+  },
+  "devDependencies": {
+    "@alttiri/util-node-js": "1.6.0"
   }
 }
