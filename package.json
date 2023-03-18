@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Sleep function with setImmediate",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
@@ -15,7 +15,8 @@
   "main": "index",
   "files": [
     "src",
-    "index.js"
+    "index.js",
+    "index.d.js"
   ],
   "typings": "index.d.ts",
   "repository": {
