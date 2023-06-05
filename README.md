@@ -4,6 +4,39 @@ Some JavaScript util functions.
 
 Mostly it's a draft version for personal use.
 
+```ts
+declare function sleep(ms?: number): Promise<void>;
+```
+
+```ts
+declare function dateToDayDateString(dateValue?: Date | string | number, utc?: boolean): string;
+
+declare function dateToDayDateTimeString(dateValue?: Date | string | number, utc?: boolean): string;
+
+declare function formatDate(dateValue?: Date | string | number, pattern?: string, utc?: boolean): string;
+```
+
+```ts
+declare function formatSizeWinLike(bytes: number): string; // aka `bytesToSizeWinLike`
+```
+
+```ts
+declare class Semaphore {
+  constructor(max: number);
+  acquire(): Promise<void>;
+  release(): void;
+}
+```
+
+```ts
+declare class CountLatch {
+  constructor(count?);
+  countDown(): void;
+  countUp(): void;
+  then(resolve: VoidFunc, reject: VoidFunc): Promise<void>
+}
+```
+
 ## Installation
 
 ### From NPM

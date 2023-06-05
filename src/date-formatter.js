@@ -1,9 +1,9 @@
-// "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
+/** "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10" */
 export function dateToDayDateString(dateValue, utc = true) {
     return formatDate(dateValue, "YYYY.MM.DD", utc);
 }
 
-// "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22Z"
+/** "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22Z" */
 export function dateToDayDateTimeString(dateValue, utc = true) {
     return formatDate(dateValue, "YYYY.MM.DD HH:mm:SS", utc) + (utc ? "Z" : "");
 }
