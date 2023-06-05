@@ -1,14 +1,16 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.7.0",
-  "description": "Sleep function with setImmediate",
+  "version": "1.8.0",
+  "description": "Some util functions for personal use",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
     "sleep",
     "setImmediate",
     "format",
     "date",
-    "size"
+    "size",
+    "semaphore",
+    "isString"
   ],
   "license": "MIT",
   "type": "module",
