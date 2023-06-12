@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Some util functions for personal use",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
@@ -14,7 +14,7 @@
   ],
   "license": "MIT",
   "type": "module",
-  "main": "index",
+  "main": "index.js",
   "files": [
     "src",
     "index.js",
