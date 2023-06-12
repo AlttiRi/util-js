@@ -5,7 +5,7 @@ export declare class Semaphore {
     private        count: number;
     private readonly resolveQueue: VoidFunc[];
 
-    constructor(max: number);
+    constructor(max?: number);
     acquire(): Promise<void>;
     release(): void;
 }
