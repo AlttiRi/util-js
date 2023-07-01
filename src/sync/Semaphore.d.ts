@@ -1,4 +1,4 @@
-type VoidFunc = (value: void) => void;
+import {VoidFunc} from "./VoidFunc";
 
 export declare class Semaphore {
     private readonly max: number;

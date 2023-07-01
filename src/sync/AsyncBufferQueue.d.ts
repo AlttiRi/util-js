@@ -1,4 +1,5 @@
 import {Semaphore} from "./Semaphore";
+import {VoidFunc} from "./VoidFunc";
 
 /**
  * Use it when in one place you need to `enqueue()` some `value`, until `close()`.
@@ -13,7 +14,7 @@ export class AsyncBufferQueue<T> {
     private values: T[];
     private done: boolean;
     private promise: Promise<void>;
-    private resolve: (value?: any) => void;
+    private resolve: VoidFunc;
     private semaphore: Semaphore;
     constructor(size: number = 128);
     close(): void;
