@@ -1,20 +1,11 @@
-export { sleep } from "./src/sleep";
+export type * from "./src/sync/VoidFunc";
+export      * from "./src/sync/Semaphore";
+export      * from "./src/sync/CountLatch";
+export      * from "./src/sync/AsyncBufferQueue";
+export      * from "./src/sync/Queue";
+export type * from "./src/sync/Queue";
 
-export {
-    formatDate,
-    dateToDayDateString,
-    dateToDayDateTimeString,
-} from "./src/date-formatter";
-
-export {
-    formatSizeWinLike, /* aka */ bytesToSizeWinLike,
-} from "./src/byte-size-converter";
-
-export type { VoidFunc }  from "./src/sync/VoidFunc";
-export { Semaphore }  from "./src/sync/Semaphore";
-export { CountLatch } from "./src/sync/CountLatch";
-export { AsyncBufferQueue } from "./src/sync/AsyncBufferQueue";
-export { Queue }      from "./src/sync/Queue";
-export type { Node }  from "./src/sync/Queue";
-
-export function isString(value: unknown): value is string;
+export * from "./src/byte-size-converter";
+export * from "./src/date-formatter";
+export * from "./src/sleep";
+export * from "./src/util";

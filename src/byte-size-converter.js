@@ -1,3 +1,4 @@
+/** @deprecated */
 export {formatSizeWinLike as bytesToSizeWinLike}; // The old name
 
 /**
@@ -39,4 +40,18 @@ export function toTruncPrecision3(number) {
         return result.toPrecision(2);
     }
     return result.toPrecision(3);
+}
+
+/** @deprecated */
+export {formatNumber as tripleSizeGroups}; // The old name
+
+/**
+ * Useful for file byte size formatting:
+ * 34456909 -> 34 456 909
+ * @param {number} num
+ * @return {string}
+ * */
+export function formatNumber(num) {
+    const str = num.toString();
+    return str.padStart(str.length + (3 - str.length % 3)).match(/(.{3})/g).join(" ").trimStart();
 }
