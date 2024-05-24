@@ -1,17 +1,44 @@
-/** "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10" */
+/**
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
+ * @param {(Date | string | number)?} dateValue
+ * @param {boolean} utc = true
+ * @return {string}
+ */
 export function dateToDayDateString(dateValue, utc = true) {
     return formatDate(dateValue, "YYYY.MM.DD", utc);
 }
 
-/** "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22Z" */
+/**
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22Z"
+ * @param {(Date | string | number)?} dateValue
+ * @param {boolean?} utc = true
+ * @return {string}
+ */
 export function dateToDayDateTimeString(dateValue, utc = true) {
     return formatDate(dateValue, "YYYY.MM.DD HH:mm:SS", utc) + (utc ? "Z" : "");
 }
 
 /**
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22"
+ * @param {(Date | string | number)?} dateValue
+ * @return {string}
+ */
+export function localDate(dateValue) {
+    return dateToDayDateString(dateValue, false);
+}
+/**
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
+ * @param {(Date | string | number)?} dateValue
+ * @return {string}
+ */
+export function localDateTime(dateValue){
+    return dateToDayDateTimeString(dateValue, false);
+}
+
+/**
  * Formats date. Supports: YY.YYYY.MM.DD HH:mm:SS.
  * Default format: "YYYY.MM.DD". formatDate() -> "2022.01.07"
- * @param {Date|string|number?} dateValue
+ * @param {(Date | string | number)?} dateValue
  * @param {string?} pattern
  * @param {boolean?} utc
  * @return {string}
