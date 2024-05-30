@@ -1,4 +1,5 @@
-import {sleep} from "../src/sleep.js";
+import {sleep} from "../index";
+
 
 console.time("sleep()");
 for (let i = 0; i < 100; i++) {

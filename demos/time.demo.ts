@@ -1,4 +1,5 @@
-import {dateToDayDateString, dateToDayDateTimeString, localDate, localDateTime} from "../src/date-formatter.js";
+import {dateToDayDateString, dateToDayDateTimeString, localDate, localDateTime} from "../index";
+
 
 console.log(dateToDayDateString(1234567890123));
 console.log(dateToDayDateTimeString(1234567890123));

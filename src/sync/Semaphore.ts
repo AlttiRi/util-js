@@ -1,20 +1,23 @@
+import {VoidFunc} from "./VoidFunc";
+
 /** The most simple semaphore implementation. */
 export class Semaphore {
-    /** @param {number} max = 1 - by default, it works as a mutex. */
-    constructor(max = 1) {
+    private readonly max: number;
+    private        count: number;
+    private readonly resolveQueue: VoidFunc[];
+
+    /** @param {number} [max = 1] - by default, it works as a mutex. */
+    constructor(max: number = 1) {
         if (max < 1) {
             max = 1;
         }
-        /** @type {number} */
         this.max = max;
-        /** @type {number} */
         this.count = 0;
-        /** @type {VoidFunc[]} */
         this.resolveQueue = [];
     }
 
-    /** @return {Promise<void>} */
-    acquire() {
+    /** @return {Promise<unknown>} */
+    acquire(): Promise<unknown> {
         let promise;
         if (this.count < this.max) {
             promise = Promise.resolve();
@@ -27,10 +30,10 @@ export class Semaphore {
         return promise;
     }
     /** @return {void} */
-    release() {
+    release(): void {
         if (this.resolveQueue.length > 0) {
             const resolve = this.resolveQueue.shift();
-            resolve();
+            resolve!();
         }
         this.count--;
     }

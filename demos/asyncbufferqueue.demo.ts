@@ -1,5 +1,5 @@
-import {AsyncBufferQueue} from "../src/sync/AsyncBufferQueue.js";
-import {sleep} from "../src/sleep.js";
+import {AsyncBufferQueue, sleep} from "../index";
+
 
 const queue = new AsyncBufferQueue(4);
 

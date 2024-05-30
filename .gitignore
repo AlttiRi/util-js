@@ -1,3 +1,9 @@
-.idea/
-node_modules/
-/todo.txt
+/.idea/
+/node_modules/
+/dist/
+src/**/*.js
+src/**/*.d.ts
+index.js
+index.d.ts
+*.tgz
+todo.txt

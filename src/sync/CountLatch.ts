@@ -1,6 +1,12 @@
+import {VoidFunc} from "./VoidFunc";
+
 export class CountLatch {
+    private count: number;
+    private promise: Promise<void>;
+    private resolve!: VoidFunc;
+
     /** @param {number} count = 0 */
-    constructor(count = 0) {
+    constructor(count: number = 0) {
         /** @type {number} */
         this.count = count;
         if (count === 0) {
@@ -15,7 +21,7 @@ export class CountLatch {
         });
     }
 
-    countDown() {
+    countDown(): void {
         if (this.count > 0) {
             this.count--;
             if (this.count === 0) {
@@ -24,7 +30,7 @@ export class CountLatch {
         }
     }
 
-    countUp() {
+    countUp(): void {
         if (this.count === 0) {
             this.promise = new Promise(resolve => {
                 this.resolve = resolve;
@@ -34,7 +40,7 @@ export class CountLatch {
     }
 
     /** Makes this object "Thenable" */
-    then(resolve, reject) {
-        this.promise.then(resolve, reject);
+    then(resolve: VoidFunc, reject: VoidFunc): Promise<void> {
+        return this.promise.then(resolve, reject);
     }
 }

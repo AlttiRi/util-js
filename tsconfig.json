@@ -4,9 +4,9 @@
     "useDefineForClassFields": false,
 
     "target": "es2020",
-    "lib": ["ES2021", "DOM"],
+    "lib": ["ES2021", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop":   true,
     "isolatedModules":   true,
     "resolveJsonModule": true,
@@ -23,7 +23,12 @@
     "allowJs": false,
 
     "noEmit": false,
-    "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+//  "sourceMap": true,
+//  "outDir": "./dist",
   },
+  "include": [
+    "src/**/*.ts",
+    "index.ts",
+  ]
 }

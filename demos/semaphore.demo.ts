@@ -1,17 +1,16 @@
-import {Semaphore}  from "../src/sync/Semaphore.js";
-import {CountLatch} from "../src/sync/CountLatch.js";
-import {sleep} from "../src/sleep.js";
+import {Semaphore, CountLatch, sleep}  from "../index";
+
 
 const mutex     = new Semaphore();
 const semaphore = new Semaphore(4);
 
 let currentNum = 1;
-async function getDataAsync() {
+async function getDataAsync(): Promise<number> {
     const num = currentNum++;
     await sleep(Math.random() * 1000);
     return num;
 }
-function handleData(data) {
+function handleData(data: number) {
     console.log(data);
 }
 
@@ -48,7 +47,7 @@ async function handleDataConcurrentlyOrdered() {
 
 // ---
 
-async function demoSync(name, func) {
+async function demoSync(name: string, func: Function) {
     console.log("\n---");
     currentNum = 1;
 
@@ -62,7 +61,7 @@ async function demoSync(name, func) {
 
 // ---
 // If you need to wait all tasks done.
-async function demoAsync(name, func) {
+async function demoAsync(name: string, func: Function) {
     console.log("\n---");
     currentNum = 1;
 
@@ -76,7 +75,7 @@ async function demoAsync(name, func) {
     console.timeEnd(name);
 }
 // If you do not need to wait all tasks done.
-function demoAsyncAlternativeExample(name, func) {
+function demoAsyncAlternativeExample(name: string, func: Function) {
     console.log("\n---");
     currentNum = 1;
 
@@ -90,7 +89,7 @@ function demoAsyncAlternativeExample(name, func) {
 // ---
 
 // The best — the optimal and safe approach //
-async function demoSemaphoreAndCountLatch(name) {
+async function demoSemaphoreAndCountLatch(name: string) {
     console.log("\n---");
     currentNum = 1;
 
@@ -105,12 +104,12 @@ async function demoSemaphoreAndCountLatch(name) {
 }
 
 // The better approach, do not run all data handlers at one moment.
-async function taskStarted(countLatch) {
+async function taskStarted(countLatch: CountLatch) {
     countLatch.countUp();
     await semaphore.acquire();
     void startAsyncTask(semaphore, countLatch);
 }
-async function startAsyncTask(semaphore, countLatch) {
+async function startAsyncTask(semaphore: Semaphore, countLatch: CountLatch) {
     const takeMutex = mutex.acquire();
     let data;
     try {

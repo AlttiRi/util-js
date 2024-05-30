@@ -1,5 +1,5 @@
-import {CountLatch} from "../src/sync/CountLatch.js";
-import {sleep} from "../src/sleep.js";
+import {CountLatch, sleep} from "../index";
+
 
 console.log(1);
 const counter = new CountLatch();

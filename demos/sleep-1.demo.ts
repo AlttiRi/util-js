@@ -1,4 +1,5 @@
-import {sleep} from "../src/sleep.js";
+import {sleep} from "../index";
+
 
 await multipleSleepCall(  100); //   2 ms
 await multipleSleepCall( 1000); //   6 ms

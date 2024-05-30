@@ -1,4 +1,4 @@
-import {Queue} from "../src/sync/Queue.js";
+import {Queue} from "../index";
 
 
 console.time("Queue");
@@ -14,13 +14,13 @@ console.timeEnd("Array");
 // Array: 875.014ms
 
 
-function pushThenShift(collection, times = 100_000) {
+function pushThenShift(collection: Queue<number> | number[], times = 100_000) {
     for (let i = 0; i < times; i++) {
         collection.push(i);
     }
     let total = 0;
     for (let i = 0; i < times; i++) {
-        total += collection.shift();
+        total += collection.shift()!;
     }
     return total;
 }

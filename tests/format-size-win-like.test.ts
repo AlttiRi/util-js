@@ -1,4 +1,4 @@
-import {formatSizeWinLike} from "../src/byte-size-converter.js";
+import {formatSizeWinLike} from "../src/byte-size-converter";
 
 import {Tester} from "@alttiri/util-node-js";
 const {eq, report} = new Tester().destructible();

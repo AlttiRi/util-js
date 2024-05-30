@@ -1,7 +1,8 @@
-import {sleep} from "../src/sleep.js";
+import {sleep} from "../index";
 
-sleep(1).then(() => console.log(4));
-sleep(1).then(() => console.log(5));
+
+sleep(0).then(() => console.log(4));
+sleep(0).then(() => console.log(5));
 
 // with using setImmediate
 sleep().then(() => console.log(1));
