@@ -1,4 +1,4 @@
-import {isString} from "./util";
+import {isString} from "./util.js";
 
 /**
  * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"

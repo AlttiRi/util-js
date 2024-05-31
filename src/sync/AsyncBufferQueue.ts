@@ -1,5 +1,5 @@
 import {VoidFunc} from "./VoidFunc";
-import {Semaphore} from "./Semaphore";
+import {Semaphore} from "./Semaphore.js";
 
 /**
  * Use it when in one place you need to `enqueue()` some `value`, until `close()`.
