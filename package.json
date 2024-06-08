@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "@alttiri/util-node-js": "2.0.10-20240530",
-    "typescript": "5.4.5"
+    "typescript": "5.5.1-rc"
   }
 }
