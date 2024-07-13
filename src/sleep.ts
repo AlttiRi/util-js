@@ -26,3 +26,23 @@ export function sleep(ms?: number): Promise<void> {
     }
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+/**
+ * Interruptible `sleep`.
+ * If was interrupted resolves with the interrupt reason (`signal.reason`).
+ * @param {number} ms
+ * @param {AbortSignal} signal
+ */
+export function sleepEx(ms: number, signal: AbortSignal): Promise<void | any> {
+    if (signal.aborted) {
+        return Promise.resolve(signal.reason);
+    }
+    let timerId: number;
+    return new Promise(resolve => {
+        timerId = setTimeout(resolve, ms);
+        signal.onabort = () => {
+            clearTimeout(timerId);
+            resolve(signal.reason);
+        };
+    });
+}
