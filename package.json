@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.13.1-20240725",
+  "version": "1.13.2-20240725",
   "description": "Some util functions for personal use",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
@@ -44,7 +44,7 @@
     "login-ghp": "npm login --registry=https://npm.pkg.github.com"
   },
   "devDependencies": {
-    "@alttiri/util-node-js": "2.0.16-20240606",
+    "@alttiri/util-node-js": "2.1.1-20240725",
     "typescript": "5.5.4"
   }
 }
