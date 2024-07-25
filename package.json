@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.13.2-20240725",
+  "version": "1.13.3-20240725",
   "description": "Some util functions for personal use",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
@@ -15,13 +15,13 @@
   "license": "MIT",
   "type": "module",
   "main": "index.js",
+  "typings": "index.d.ts",
   "files": [
     "src/**/*.js",
     "src/**/*.d.ts",
     "index.js",
     "index.d.ts"
   ],
-  "typings": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/alttiri/util-js.git"
