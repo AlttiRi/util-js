@@ -1,4 +1,4 @@
-import {debounce, sleep} from "@/index";
+import {debounce, sleep} from "@/index.ts";
 
 
 function logTimeOrNum(num?: number, _unused = "xxx"): number | undefined {

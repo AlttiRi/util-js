@@ -1,4 +1,4 @@
-import {Semaphore, CountLatch, sleep}  from "../index";
+import {Semaphore, CountLatch, sleep}  from "@/index.ts";
 
 
 const mutex     = new Semaphore();

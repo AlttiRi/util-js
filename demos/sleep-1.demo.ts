@@ -1,4 +1,4 @@
-import {sleep} from "../index";
+import {sleep} from "@/index.ts";
 
 
 await multipleSleepCall(  100); //   2 ms

@@ -1,4 +1,4 @@
-import {getThrottle, sleep} from "@/index";
+import {getThrottle, sleep} from "@/index.ts";
 
 
 const {throttled, runNow, clear} = getThrottle(300, true);

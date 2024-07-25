@@ -1,4 +1,4 @@
-import {CountLatch, sleep} from "../index";
+import {CountLatch, sleep} from "@/index.ts";
 
 
 console.log(1);

@@ -1,4 +1,4 @@
-import {sleep} from "../index";
+import {sleep} from "@/index.ts";
 
 
 sleep(0).then(() => console.log(4));

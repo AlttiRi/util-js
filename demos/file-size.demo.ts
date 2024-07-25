@@ -1,4 +1,4 @@
-import {formatNumber, formatSizeWinLike} from "../index";
+import {formatNumber, formatSizeWinLike} from "@/index.ts";
 
 
 console.log(formatNumber(123456789), "—", formatSizeWinLike(123456789));

@@ -1,4 +1,4 @@
-import {throttle, sleep} from "@/index";
+import {throttle, sleep} from "@/index.ts";
 
 
 function logTimeOrNum(num?: number, extra?: any): number | undefined {

@@ -1,4 +1,4 @@
-import {AsyncBufferQueue, sleep} from "../index";
+import {AsyncBufferQueue, sleep} from "@/index.ts";
 
 
 const queue = new AsyncBufferQueue(4);

@@ -1,4 +1,4 @@
-import {dateToDayDateString, dateToDayDateTimeString, localDate, localDateTime} from "../index";
+import {dateToDayDateString, dateToDayDateTimeString, localDate, localDateTime} from "@/index.ts";
 
 
 console.log(dateToDayDateString(1234567890123));

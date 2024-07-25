@@ -1,4 +1,4 @@
-export type * from "./src/sync/VoidFunc";
+export * from "./src/sync/VoidFunc.js";
 export * from "./src/sync/Semaphore.js";
 export * from "./src/sync/CountLatch.js";
 export * from "./src/sync/AsyncBufferQueue.js";

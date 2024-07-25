@@ -1,4 +1,4 @@
-import {VoidFunc} from "./VoidFunc";
+import {VoidFunc} from "./VoidFunc.js";
 import {Semaphore} from "./Semaphore.js";
 
 /**

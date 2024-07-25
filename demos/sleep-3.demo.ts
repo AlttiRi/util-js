@@ -1,4 +1,4 @@
-import {sleep} from "../index";
+import {sleep} from "@/index.ts";
 
 
 console.time("sleep()");
