@@ -4,7 +4,8 @@ Some JavaScript util functions.
 
 Mostly it's a draft version for personal use.
 
-## Main util functions
+## *.d.ts
+
 ```ts
 /** @deprecated */
 export { formatSizeWinLike as bytesToSizeWinLike };
@@ -126,7 +127,8 @@ export declare function isAnyString(value: unknown): value is (string | String);
 export declare function hashString(str: string): number;
 ```
 
-## Sync
+## *.d.ts (sync)
+
 ```ts
 /**
  * Use it when in one place you need to `enqueue()` some `value`, until `close()`.
