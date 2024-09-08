@@ -125,6 +125,14 @@ export declare function isAnyString(value: unknown): value is (string | String);
  * @return {number}
  */
 export declare function hashString(str: string): number;
+export type DownloadBlobOpt = {
+  /** The URL to be added as a hash in the downloaded blob URL. Useful to keep the original file URL. */
+  url?: string;
+  /** The delay before `revokeObjectURL`. 5000 by default. */
+  timeout?: number;
+};
+export declare function downloadBlob(blob: Blob, name: string, url?: string): void;
+export declare function downloadBlob(blob: Blob, name: string, opt: DownloadBlobOpt): void;
 ```
 
 ## *.d.ts (sync)
