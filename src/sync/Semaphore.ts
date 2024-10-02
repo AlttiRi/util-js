@@ -1,4 +1,4 @@
-import {VoidFunc} from "./VoidFunc.js";
+import {VoidFunc} from "./VoidFunc.ts";
 
 /** The most simple semaphore implementation. */
 export class Semaphore {

@@ -1,4 +1,4 @@
-import {VoidFunc} from "./VoidFunc.js";
+import {VoidFunc} from "./VoidFunc.ts";
 
 export class CountLatch {
     private count: number;
