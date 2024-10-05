@@ -1,4 +1,4 @@
-import {formatNumber, toTruncPrecision3} from "../src/byte-size-converter.ts";
+import {formatNumber, toTruncPrecision3} from "../src/byte-size-converter.js";
 
 import {Tester} from "@alttiri/util-node-js";
 const {eq, report} = new Tester().destructible();

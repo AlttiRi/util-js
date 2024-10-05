@@ -1,6 +1,6 @@
 {
   "name": "@alttiri/util-js",
-  "version": "1.15.0-dev.20241002",
+  "version": "1.14.1-20240908",
   "description": "Some util functions for personal use",
   "homepage": "https://github.com/AlttiRi/util-js",
   "keywords": [
@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "@alttiri/util-node-js": "2.2.0-20240821",
-    "typescript": "5.7.0-dev.20241002"
+    "typescript": "5.5.4"
   }
 }
