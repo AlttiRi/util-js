@@ -1,4 +1,4 @@
-# util-js
+# [util-js](https://github.com/AlttiRi/util-js)
 
 Some JavaScript util functions.
 
