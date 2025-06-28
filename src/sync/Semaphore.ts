@@ -33,8 +33,8 @@ export class Semaphore {
     release(): void {
         if (this.resolveQueue.length > 0) {
             const resolve = this.resolveQueue.shift();
-            resolve!();
+            resolve!(); // todo?: `resolve` with the `count`
         }
-        this.count--;
+        this.count--; // todo?: keep value 0+ (when over-releasing)
     }
 }
