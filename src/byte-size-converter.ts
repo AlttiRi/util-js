@@ -90,26 +90,3 @@ export {formatSizeWinLike as bytesToSizeWinLike};
 /** @deprecated */
 export {formatNumber as tripleSizeGroups};
 
-
-// ----------------------- //
-// The old implementations // todo: delete
-
-/** @deprecated */
-export function toTruncPrecision3_old(number: number): string {
-    let result;
-    if (number < 10) {
-        result = Math.trunc(number * 100) / 100;
-    } else if (number < 100) {
-        result = Math.trunc(number * 10) / 10;
-    } else if (number < 1000) {
-        result = Math.trunc(number);
-    } else {
-        return Math.trunc(number).toString();
-    }
-    if (number < 0.1) {
-        return result.toPrecision(1);
-    } else if (number < 1) {
-        return result.toPrecision(2);
-    }
-    return result.toPrecision(3);
-}
