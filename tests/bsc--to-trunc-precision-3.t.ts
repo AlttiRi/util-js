@@ -14,7 +14,7 @@ eq("7", toTruncPrecision3(836.966796875), "836");
 eq("8", toTruncPrecision3(1836.96679687), "1836");
 eq("a", toTruncPrecision3(0.08),  "0.08");
 eq("b", toTruncPrecision3(0.099), "0.09");
-eq("v", toTruncPrecision3(0.0099), "0");
+eq("c", toTruncPrecision3(0.0099), "0");
 
 eq("f1", formatNumber(34456909),  "34 456 909");
 eq("f2", formatNumber( 4456909),   "4 456 909");

@@ -1,15 +1,16 @@
-/** @deprecated */
-export {formatSizeWinLike as bytesToSizeWinLike}; // The old name
+/** The old name
+ *  @deprecated  */
+export {formatSizeWinLike as bytesToSizeWinLike};
 
 /**
  * Formats bytes mostly like Windows does,
  * but in some rare cases the result is different.
  * Check the file with tests.
- * @see format-size-win-like.test.js
+ * @see bsc--format-size-win-like.t.ts
  * @param {number} bytes
  * @return {string}
  */
-export function formatSizeWinLike(bytes: number): string {
+export function formatSizeAlmostWinLike(bytes: number): string {
     if (bytes < 1024) { return bytes + " B"; }
     const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     let i = Math.floor(Math.log(bytes) / Math.log(1024));
@@ -17,6 +18,25 @@ export function formatSizeWinLike(bytes: number): string {
     if (result >= 1000) {
         i++;
         result /= 1024;
+    }
+    return toTruncPrecision3(result) + " " + sizes[i];
+}
+
+/**
+ * Formats bytes EXACTLY like Windows does.
+ * Check the file with tests.
+ * @see bsc--format-size-win-like.t.ts
+ * @param {number} bytes
+ * @return {string}
+ */
+export function formatSizeWinLike(bytes: number): string {
+    if (bytes < 1024) { return bytes + " B"; }
+    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    let i = 0;
+    let result = bytes;
+    while (result >= 1000) {
+        i++;
+        result = Math.trunc(result) / 1024;
     }
     return toTruncPrecision3(result) + " " + sizes[i];
 }
@@ -32,7 +52,7 @@ export function formatSizeWinLike(bytes: number): string {
  * @param {number} number
  * @return {string}
  */
-export function toTruncPrecision3(number: number): string {
+export function toTruncPrecision3_old(number: number): string {
     let result;
     if (number < 10) {
         result = Math.trunc(number * 100) / 100;
@@ -51,8 +71,21 @@ export function toTruncPrecision3(number: number): string {
     return result.toPrecision(3);
 }
 
-/** @deprecated */
-export {formatNumber as tripleSizeGroups}; // The old name
+export function toTruncPrecision3(number: number): string {
+    if (number >= 100) {
+        return Math.trunc(number).toString();
+    } else if (number >= 10) {
+        return (Math.trunc(number * 10) / 10).toFixed(1);
+    } else if (number >= 0.01) {
+        return (Math.trunc(number * 100) / 100).toFixed(2);
+    } else {
+        return "0";
+    }
+}
+
+/** The old name
+ *  @deprecated  */
+export {formatNumber as tripleSizeGroups};
 
 /**
  * Useful for file byte size formatting:

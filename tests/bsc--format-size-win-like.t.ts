@@ -139,6 +139,11 @@ eq("xxx-3", formatSizeWinLike(3178496), "3.03 MB");
 
 
 
+//
+// Note: "inaccurate" versions pass the test with the new `formatSizeWinLike` function.
+// The old function is named as `formatSizeAlmostWinLike` now.
+//
+
 // ---------------------------
 // 1088661207798      / 1024 =
 // 1063145710.7402344 / 1024 =
@@ -146,35 +151,35 @@ eq("xxx-3", formatSizeWinLike(3178496), "3.03 MB");
 // 1013.8947589304298 / 1024 =
 // 0.9901316005179979
 // 0.99 TB
-eq("41", formatSizeWinLike(1088661207798), "0.98 TB"); // failed
+eq("inaccurate-41", formatSizeWinLike(1088661207798), "0.98 TB");
 // 1155241971712
 // 1128165988
 // 1101724.59765625
 // 1075.9029273986816
 // 1.050686452537775
 // 1.05 TB
-eq("46", formatSizeWinLike(1155241971712), "1.04 TB"); // failed // % 4096
+eq("inaccurate-4096-46", formatSizeWinLike(1155241971712), "1.04 TB");
 // 1198893047808
 // 1170793992
 // 1143353.5078125
 // 1116.5561599731445
 // 1.090386874973774
 // 1.09 TB
-eq("50", formatSizeWinLike(1198893047808), "1.08 TB"); // failed // % 4096
+eq("inaccurate-4096-50", formatSizeWinLike(1198893047808), "1.08 TB");
 // 1110842765312
 // 1084807388
 // 1059382.21484375
 // 1034.5529441833496
 // 1.0103056095540524
 // 1.01 TB
-eq("w2", formatSizeWinLike(1110842765312), "1.00 TB"); // failed // % 4096
+eq("inaccurate-4096-w2", formatSizeWinLike(1110842765312), "1.00 TB");
 // 1122038275947      / 1024 =
 // 1095740503.8544922 / 1024 =
 // 1070059.0857954025 / 1024 =
 // 1044.9795759720728 / 1024 =
 // 1.0204878671602273
 // 1.02 TB
-eq("t1", formatSizeWinLike(1122038275947), "1.01 TB"); // failed
+eq("inaccurate-t1", formatSizeWinLike(1122038275947), "1.01 TB");
 
 
 // -----------------
@@ -182,11 +187,11 @@ eq("t1", formatSizeWinLike(1122038275947), "1.01 TB"); // failed
 // 2875392      / 1024 =
 // 2805.984375  / 1024 =
 // 2.7402191162109375
-eq("xxx-2", formatSizeWinLike(2873328), "2.73 MB"); // failed
+eq("inaccurate-xxx-2", formatSizeWinLike(2873328), "2.73 MB");
 // 3177467
 // 3102.9951171875
 // 3.030268669128418
-eq("xxx-4", formatSizeWinLike(3177467), "3.02 MB"); // failed
+eq("inaccurate-xxx-4", formatSizeWinLike(3177467), "3.02 MB");
 
 
 report();
