@@ -4,10 +4,12 @@ const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"] as const;
  * Formats bytes EXACTLY like Windows File Explorer does.
  * Check the file with tests.
  * @see bsc--format-size-win-like.t.ts
+ * @alias bytesToSizeWinLike
+ * @alias formatSizeWinLike
  * @param {number} bytes
  * @return {string}
  */
-export function formatSizeWinLike(bytes: number): string {
+export function formatFileSizeWinLike(bytes: number): string {
     if (bytes < 1024) { return bytes + " B"; }
     let i = 0;
     let result = bytes;
@@ -21,15 +23,14 @@ export function formatSizeWinLike(bytes: number): string {
 /**
  * Formats bytes mostly like Windows File Explorer does,
  * but in some rare cases the result is different.
- * The old implementation of formatSizeWinLike.
+ * The old implementation of `formatFileSizeWinLike`.
  * It produces the more accurate result, but not like Windows does.
  * See "inaccurate" tests.
  * @see bsc--format-size-win-like.t.ts
- * @alias bytesToSizeWinLike
  * @param {number} bytes
  * @return {string}
  */
-export function formatSizeAlmostWinLike(bytes: number): string {
+export function formatFileSize(bytes: number): string {
     if (bytes < 1024) { return bytes + " B"; }
     let i = Math.floor(Math.log(bytes) / Math.log(1024));
     let result = bytes / Math.pow(1024, i);
@@ -86,9 +87,12 @@ export function formatNumber(num: number): string {
 // ------------- //
 // The old names //
 
-/** @deprecated */
-export {formatSizeWinLike as bytesToSizeWinLike};
+/** @deprecated Use `formatFileSizeWinLike` */
+export const bytesToSizeWinLike = formatFileSizeWinLike;
 
-/** @deprecated */
-export {formatNumber as tripleSizeGroups};
+/** @deprecated Use `formatFileSizeWinLike` */
+export const formatSizeWinLike  = formatFileSizeWinLike;
+
+/** @deprecated Use `formatNumber` */
+export const tripleSizeGroups = formatNumber;
 
