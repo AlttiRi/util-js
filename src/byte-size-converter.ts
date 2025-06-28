@@ -1,5 +1,7 @@
+const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"] as const;
+
 /**
- * Formats bytes EXACTLY like Windows does.
+ * Formats bytes EXACTLY like Windows File Explorer does.
  * Check the file with tests.
  * @see bsc--format-size-win-like.t.ts
  * @param {number} bytes
@@ -7,7 +9,6 @@
  */
 export function formatSizeWinLike(bytes: number): string {
     if (bytes < 1024) { return bytes + " B"; }
-    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     let i = 0;
     let result = bytes;
     while (result >= 1000) {
@@ -18,9 +19,11 @@ export function formatSizeWinLike(bytes: number): string {
 }
 
 /**
- * Formats bytes mostly like Windows does,
+ * Formats bytes mostly like Windows File Explorer does,
  * but in some rare cases the result is different.
- * Check the file with tests.
+ * The old implementation of formatSizeWinLike.
+ * It produces the more accurate result, but not like Windows does.
+ * See "inaccurate" tests.
  * @see bsc--format-size-win-like.t.ts
  * @alias bytesToSizeWinLike
  * @param {number} bytes
@@ -28,7 +31,6 @@ export function formatSizeWinLike(bytes: number): string {
  */
 export function formatSizeAlmostWinLike(bytes: number): string {
     if (bytes < 1024) { return bytes + " B"; }
-    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     let i = Math.floor(Math.log(bytes) / Math.log(1024));
     let result = bytes / Math.pow(1024, i);
     if (result >= 1000) {
