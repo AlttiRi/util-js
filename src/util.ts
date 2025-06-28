@@ -5,7 +5,8 @@ export function isAnyString(value: unknown): value is (string | String) {
     return typeof value === "string" || value instanceof String;
 }
 /**
- * Java's `hashCode` like.
+ * Java's `hashCode` like. 32-bits hash.
+ * Note: `Math.imul(..., 1)` does the same as  `| 0`, with the same speed.
  * @example
  * hashString("Lorem Ipsum") === -488052133
  * hashString("Qwerty") === -1862984904
@@ -18,6 +19,17 @@ export function hashString(str: string): number {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
         hash = Math.imul(Math.imul(31, hash) + str.charCodeAt(i), 1);
+    }
+    return hash;
+}
+/**
+ * Similar to `hashString`, but it always returns a positive number. 31-bits hash.
+ * @param {string} str
+ */
+export function hashStringPos(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = Math.imul(31, hash) + str.charCodeAt(i) & 0x7fffffff;
     }
     return hash;
 }
