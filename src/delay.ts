@@ -28,6 +28,74 @@ export function debounce<A extends any[]>(runnable: (...args: A) => unknown, ms 
 }
 
 /**
+ * @example
+ * const selfDebounced = getSelfDebounced(300);
+ *
+ * // prints "99" after ~1300 ms
+ * for (let i = 0; i < 100; i++) {
+ *     selfDebounced().then((debounced) => {
+ *         if (debounced) {
+ *             return;
+ *         }
+ *         console.log(i);
+ *     });
+ *     await sleep(10);
+ * }
+ */
+export function getSelfDebounced(ms: number = 250) {
+    let timerId: number | undefined;
+    let resolve: ((value: boolean) => void) | undefined;
+    return async function selfDebounced() {
+        if (resolve) {
+            if (timerId !== undefined) {
+                clearTimeout(timerId);
+            }
+            resolve(true);
+        }
+        timerId = setTimeout(() => {
+            resolve!(false);
+        }, ms);
+        return new Promise<boolean>(_resolve => {
+            resolve = _resolve;
+        });
+    }
+}
+
+/**
+ * @example
+ * const selfDebouncedReject = getSelfDebouncedReject(300);
+ *
+ * // prints "99" after ~1300 ms
+ * for (let i = 0; i < 100; i++) {
+ *     selfDebouncedReject().then(() => {
+ *         console.log(i);
+ *     }).catch(() => {});
+ *     await sleep(10);
+ * }
+ */
+export function getSelfDebouncedReject(ms: number = 250) {
+    let timerId: number | undefined;
+    let resolve: (() => void) | undefined;
+    let reject:  (() => void) | undefined;
+    return async function selfDebounced() {
+        if (resolve) {
+            if (timerId !== undefined) {
+                clearTimeout(timerId);
+            }
+            reject!();
+        }
+        timerId = setTimeout(() => {
+            resolve!();
+        }, ms);
+        return new Promise<void>((_resolve, _reject) => {
+            resolve = _resolve;
+            reject  = _reject;
+        });
+    }
+}
+
+
+/**
  * A classic `throttle` wrap function.
  *
  * Executes the wrapped function no more than once per `ms`.
