@@ -53,8 +53,8 @@ export function formatDate(dateValue: Date | string | number = new Date(), patte
         console.warn("Invalid Date value: ", dateValue);
     }
     const formatter = new DateFormatter(date, utc);
-    return pattern.replaceAll(/YYYY|YY|MM|DD|HH|mm|SS/g, (...args) => {
-        const property = args[0] as "YYYY" | "YY" | "MM" | "DD" | "HH" | "mm" | "SS";
+    return pattern.replaceAll(/YYYY|YY|MM|DD|HH|hh|mm|SS|ss/g, (...args) => {
+        const property = args[0] as "YYYY" | "YY" | "MM" | "DD" | "HH" | "hh" | "mm" | "SS" | "ss";
         return formatter[property];
     });
 }
@@ -76,9 +76,19 @@ class DateFormatter {
         this.date = date;
         this.utc = utc ? "UTC" : "";
     }
-    get SS()   {return pad0(this.date[`get${this.utc}Seconds`]())}
+
+    // todo: remove SS, HH and bump major version, + change note
+    get SS()   {
+        console.log("SS is deprecated. Use ss.");
+        return pad0(this.date[`get${this.utc}Seconds`]())
+    }
+    get ss()   {return pad0(this.date[`get${this.utc}Seconds`]())}
     get mm()   {return pad0(this.date[`get${this.utc}Minutes`]())}
-    get HH()   {return pad0(this.date[`get${this.utc}Hours`]())}
+    get HH()   {
+        console.log("HH is deprecated. Use hh.");
+        return pad0(this.date[`get${this.utc}Hours`]())
+    }
+    get hh()   {return pad0(this.date[`get${this.utc}Hours`]())}
 
     get MM()   {return pad0(this.date[`get${this.utc}Month`]() + 1)}
     get DD()   {return pad0(this.date[`get${this.utc}Date`]())}
