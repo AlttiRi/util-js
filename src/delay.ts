@@ -1,13 +1,18 @@
 /**
  * A classic `debounce` wrap function.
  *
- * `ms` param is `250` ms by default.
+ * Wraps a function to create a debounced version that delays execution until after a specified time has elapsed since the last call.
+ * Only the last call within the specified time window is executed.
  *
+ * @param runnable - The function to debounce.
+ * @param ms - The debounce delay in milliseconds (default: 250).
+ * @param scope - Optional context to bind the function to (defaults to the caller's context).
+ * @returns A debounced function that delays execution of the provided function.
  * @example
  * const logAny = (i: any) => console.log(i);
  * const logAnyDebounced = debounce(logAny, 50);
  *
- * // prints `99`, after ~ 1+ second
+ * // prints `99` after ~1+ second
  * for (let i = 0; i < 100; i++) {
  *     logAnyDebounced(i);
  *     await sleep(10);
@@ -28,6 +33,15 @@ export function debounce<A extends any[]>(runnable: (...args: A) => unknown, ms 
 }
 
 /**
+ * Creates a debounced function that resolves to `false` after a specified delay,
+ * or `true` if called again before the delay expires.
+ *
+ * The function ensures that only the last call within the specified time window resolves to `false`,
+ * while earlier calls resolve to `true`.
+ *
+ * @param ms - The debounce delay in milliseconds (default: 250).
+ * @returns An async function that returns a Promise resolving to a boolean indicating
+ * whether the call was debounced (`true`) or not (`false`).
  * @example
  * const selfDebounced = getSelfDebounced(300);
  *
@@ -62,6 +76,11 @@ export function getSelfDebounced(ms: number = 250) {
 }
 
 /**
+ * Creates a debounced function that resolves after a specified delay, or rejects if called again before the delay expires.
+ * The function ensures that only the last call within the specified time window resolves, while earlier calls reject.
+ *
+ * @param ms - The debounce delay in milliseconds (default: 250).
+ * @returns An async function that returns a Promise that either resolves (for the last call) or rejects (for earlier calls).
  * @example
  * const selfDebouncedReject = getSelfDebouncedReject(300);
  *
@@ -98,16 +117,19 @@ export function getSelfDebouncedReject(ms: number = 250) {
 /**
  * A classic `throttle` wrap function.
  *
- * Executes the wrapped function no more than once per `ms`.
- * The first and last calls will always be performed.
+ * Wraps a function to create a throttled version that executes no more than once per specified time interval.
+ * The first call is executed immediately, and if additional calls occur within the interval,
+ * the last one is executed after the interval expires.
  *
- * `ms` param is `250` ms by default.
- *
+ * @param runnable - The function to throttle.
+ * @param ms - The throttle interval in milliseconds (default: 250).
+ * @param scope - Optional context to bind the function to (defaults to the caller's context).
+ * @returns A throttled function that limits execution frequency.
  * @example
  * const logAny = (i: any) => console.log(i);
  * const logAnyThrottled = throttle(logAny, 500);
  *
- * // prints "0 31 63 96 99" // "31 63 96" may differ
+ * // prints "0 31 63 96 99" (intermediate values like "31 63 96" may vary)
  * for (let i = 0; i < 100; i++) {
  *     logAnyThrottled(i);
  *     await sleep(10);
@@ -143,10 +165,15 @@ export function throttle<A extends any[]>(runnable: (...args: A) => any, ms = 25
 }
 
 /**
- * Allows to run a function as a `throttled` one, run it without a delay (`runNow`), or `clear` the deferred callback.
+ * Creates a throttled function with control methods to execute immediately (`runNow`) or `clear` pending callbacks.
+ * The throttled function limits execution to once per specified time interval, with an option to run the first call immediately.
  *
- * `ms` param is `250` ms by default.
- *
+ * @param ms - The throttle interval in milliseconds (default: 250).
+ * @param runFirstImmediately - Whether to execute the first call immediately (default: true).
+ * @returns An object containing:
+ *   - `throttled`: The throttled function that accepts a callback to execute.
+ *   - `runNow`: A method to execute the last queued callback immediately.
+ *   - `clear`: A method to cancel any pending callback.
  * @example
  * const {throttled, runNow, clear} = getThrottle(300, true);
  *
