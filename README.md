@@ -7,17 +7,27 @@ Mostly it's a draft version for personal use.
 ## *.d.ts
 
 ```ts
-/** @deprecated */
-export { formatSizeWinLike as bytesToSizeWinLike };
 /**
- * Formats bytes mostly like Windows does,
- * but in some rare cases the result is different.
+ * Formats bytes EXACTLY like Windows File Explorer does.
  * Check the file with tests.
- * @see format-size-win-like.test.js
+ * @see bsc--format-size-win-like.t.ts
+ * @alias bytesToSizeWinLike
+ * @alias formatSizeWinLike
  * @param {number} bytes
  * @return {string}
  */
-export declare function formatSizeWinLike(bytes: number): string;
+export declare function formatFileSizeWinLike(bytes: number): string;
+/**
+ * Formats bytes mostly like Windows File Explorer does,
+ * but in some rare cases the result is different.
+ * The old implementation of `formatFileSizeWinLike`.
+ * It produces the more accurate result, but not like Windows does.
+ * See "inaccurate" tests.
+ * @see bsc--format-size-win-like.t.ts
+ * @param {number} bytes
+ * @return {string}
+ */
+export declare function formatFileSize(bytes: number): string;
 /**
  * @example
  * 10.1005859375 -> "10.1"
@@ -30,15 +40,20 @@ export declare function formatSizeWinLike(bytes: number): string;
  * @return {string}
  */
 export declare function toTruncPrecision3(number: number): string;
-/** @deprecated */
-export { formatNumber as tripleSizeGroups };
 /**
  * Useful for file byte size formatting:
  * 34456909 -> 34 456 909
+ * @alias tripleSizeGroups
  * @param {number} num
  * @return {string}
  * */
 export declare function formatNumber(num: number): string;
+/** @deprecated Use `formatFileSizeWinLike` */
+export declare const bytesToSizeWinLike: typeof formatFileSizeWinLike;
+/** @deprecated Use `formatFileSizeWinLike` */
+export declare const formatSizeWinLike: typeof formatFileSizeWinLike;
+/** @deprecated Use `formatNumber` */
+export declare const tripleSizeGroups: typeof formatNumber;
 /**
  * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
  * @param {Date | string | number?} [dateValue]
@@ -54,13 +69,13 @@ export declare function dateToDayDateString(dateValue?: Date | string | number, 
  */
 export declare function dateToDayDateTimeString(dateValue?: Date | string | number, utc?: boolean): string;
 /**
- * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22"
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
  * @param {Date | string | number} [dateValue]
  * @return {string}
  */
 export declare function localDate(dateValue?: number | string | Date): string;
 /**
- * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22"
  * @param {Date | string | number} [dateValue]
  * @return {string}
  */
@@ -75,16 +90,106 @@ export declare function localDateTime(dateValue?: number | string | Date): strin
  * @return {string}
  */
 export declare function formatDate(dateValue?: Date | string | number, pattern?: string, utc?: boolean): string;
-/** A classic `debounce` wrap function. */
-export declare function debounce<A extends any[]>(runnable: (...args: A) => unknown, ms?: number, scope?: any): (...args: A) => void;
-/** A classic `throttle` wrap function. */
-export declare function throttle<A extends any[]>(runnable: (...args: A) => any, time?: number, scope?: any): (...args: A) => void;
 /**
- * Allows to run a function as a `throttled` one, run it without a delay (`runNow`), or `clear` the deferred callback.
+ * A classic `debounce` wrap function.
  *
+ * Wraps a function to create a debounced version that delays execution until after a specified time has elapsed since the last call.
+ * Only the last call within the specified time window is executed.
+ *
+ * @param runnable - The function to debounce.
+ * @param ms - The debounce delay in milliseconds (default: 250).
+ * @param scope - Optional context to bind the function to (defaults to the caller's context).
+ * @returns A debounced function that delays execution of the provided function.
+ * @example
+ * const logAny = (i: any) => console.log(i);
+ * const logAnyDebounced = debounce(logAny, 50);
+ *
+ * // prints `99` after ~1+ second
+ * for (let i = 0; i < 100; i++) {
+ *     logAnyDebounced(i);
+ *     await sleep(10);
+ * }
+ */
+export declare function debounce<A extends any[]>(runnable: (...args: A) => unknown, ms?: number, scope?: any): (...args: A) => void;
+/**
+ * Creates a debounced function that resolves to `false` after a specified delay,
+ * or `true` if called again before the delay expires.
+ *
+ * The function ensures that only the last call within the specified time window resolves to `false`,
+ * while earlier calls resolve to `true`.
+ *
+ * @param ms - The debounce delay in milliseconds (default: 250).
+ * @returns An async function that returns a Promise resolving to a boolean indicating
+ * whether the call was debounced (`true`) or not (`false`).
+ * @example
+ * const selfDebounced = getSelfDebounced(300);
+ *
+ * // prints "99" after ~1300 ms
+ * for (let i = 0; i < 100; i++) {
+ *     selfDebounced().then((debounced) => {
+ *         if (debounced) {
+ *             return;
+ *         }
+ *         console.log(i);
+ *     });
+ *     await sleep(10);
+ * }
+ */
+export declare function getSelfDebounced(ms?: number): () => Promise<boolean>;
+/**
+ * Creates a debounced function that resolves after a specified delay, or rejects if called again before the delay expires.
+ * The function ensures that only the last call within the specified time window resolves, while earlier calls reject.
+ *
+ * @param ms - The debounce delay in milliseconds (default: 250).
+ * @returns An async function that returns a Promise that either resolves (for the last call) or rejects (for earlier calls).
+ * @example
+ * const selfDebouncedReject = getSelfDebouncedReject(300);
+ *
+ * // prints "99" after ~1300 ms
+ * for (let i = 0; i < 100; i++) {
+ *     selfDebouncedReject().then(() => {
+ *         console.log(i);
+ *     }).catch(() => {});
+ *     await sleep(10);
+ * }
+ */
+export declare function getSelfDebouncedReject(ms?: number): () => Promise<void>;
+/**
+ * A classic `throttle` wrap function.
+ *
+ * Wraps a function to create a throttled version that executes no more than once per specified time interval.
+ * The first call is executed immediately, and if additional calls occur within the interval,
+ * the last one is executed after the interval expires.
+ *
+ * @param runnable - The function to throttle.
+ * @param ms - The throttle interval in milliseconds (default: 250).
+ * @param scope - Optional context to bind the function to (defaults to the caller's context).
+ * @returns A throttled function that limits execution frequency.
+ * @example
+ * const logAny = (i: any) => console.log(i);
+ * const logAnyThrottled = throttle(logAny, 500);
+ *
+ * // prints "0 31 63 96 99" (intermediate values like "31 63 96" may vary)
+ * for (let i = 0; i < 100; i++) {
+ *     logAnyThrottled(i);
+ *     await sleep(10);
+ * }
+ */
+export declare function throttle<A extends any[]>(runnable: (...args: A) => any, ms?: number, scope?: any): (...args: A) => void;
+/**
+ * Creates a throttled function with control methods to execute immediately (`runNow`) or `clear` pending callbacks.
+ * The throttled function limits execution to once per specified time interval, with an option to run the first call immediately.
+ *
+ * @param ms - The throttle interval in milliseconds (default: 250).
+ * @param runFirstImmediately - Whether to execute the first call immediately (default: true).
+ * @returns An object containing:
+ *   - `throttled`: The throttled function that accepts a callback to execute.
+ *   - `runNow`: A method to execute the last queued callback immediately.
+ *   - `clear`: A method to cancel any pending callback.
  * @example
  * const {throttled, runNow, clear} = getThrottle(300, true);
  *
+ * // prints "0 20 40 60 80 99"
  * for (let i = 0; i < 100; i++) {
  *     throttled(() => {
  *         console.log(i);
@@ -94,9 +199,9 @@ export declare function throttle<A extends any[]>(runnable: (...args: A) => any,
  * runNow(); // run the last callback without delay
  */
 export declare function getThrottle(ms?: number, runFirstImmediately?: boolean): {
-    throttled: (callback: Function, runNow?: boolean) => void;
-    runNow: (clearDelayed?: boolean) => any;
-    clear: () => void;
+  throttled: (callback: Function, runNow?: boolean) => void;
+  runNow: (clearDelayed?: boolean) => any;
+  clear: () => void;
 };
 /**
  * Sleeps `ms` milliseconds.
@@ -115,7 +220,8 @@ export declare function sleepEx(ms: number, signal: AbortSignal): Promise<void |
 export declare function isString(value: unknown): value is string;
 export declare function isAnyString(value: unknown): value is (string | String);
 /**
- * Java's `hashCode` like.
+ * Java's `hashCode` like. 32-bits hash.
+ * Note: `Math.imul(..., 1)` does the same as  `| 0`, with the same speed.
  * @example
  * hashString("Lorem Ipsum") === -488052133
  * hashString("Qwerty") === -1862984904
@@ -125,6 +231,11 @@ export declare function isAnyString(value: unknown): value is (string | String);
  * @return {number}
  */
 export declare function hashString(str: string): number;
+/**
+ * Similar to `hashString`, but it always returns a positive number. 31-bits hash.
+ * @param {string} str
+ */
+export declare function hashStringPos(str: string): number;
 export type DownloadBlobOpt = {
   /** The URL to be added as a hash in the downloaded blob URL. Useful to keep the original file URL. */
   url?: string;
