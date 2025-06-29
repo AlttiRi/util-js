@@ -21,7 +21,7 @@ export function dateToDayDateTimeString(dateValue?: Date | string | number, utc:
 }
 
 /**
- * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22"
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
  * @param {Date | string | number} [dateValue]
  * @return {string}
  */
@@ -29,7 +29,7 @@ export function localDate(dateValue?: number | string | Date): string {
     return dateToDayDateString(dateValue, false);
 }
 /**
- * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10"
+ * "Sun, 10 Jan 2021 22:22:22 GMT" -> "2021.01.10 22:22:22"
  * @param {Date | string | number} [dateValue]
  * @return {string}
  */
