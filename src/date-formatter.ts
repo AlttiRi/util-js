@@ -17,7 +17,7 @@ export function dateToDayDateString(dateValue?: Date | string | number, utc: boo
  * @return {string}
  */
 export function dateToDayDateTimeString(dateValue?: Date | string | number, utc: boolean = true): string {
-    return formatDate(dateValue, "YYYY.MM.DD HH:mm:SS", utc) + (utc ? "Z" : "");
+    return formatDate(dateValue, "YYYY.MM.DD hh:mm:ss", utc) + (utc ? "Z" : "");
 }
 
 /**
