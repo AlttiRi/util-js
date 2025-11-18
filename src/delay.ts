@@ -216,9 +216,3 @@ export function getThrottle(ms = 250, runFirstImmediately = true) {
     }
     return {throttled, runNow: execNow, clear};
 }
-
-// todo: in `getThrottle`
-// function throttledCall(this: any, callback: Function, ...params: any[]) {
-//     cb = callback.bind(this, ...params);
-//     ...
-// }
